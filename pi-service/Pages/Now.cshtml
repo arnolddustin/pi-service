@@ -1,0 +1,22 @@
+@page
+@model pi_service.Pages.NowModel
+
+@functions {
+
+  public string FormatDate(DateTime theTime) {
+    return theTime.ToString("d");
+  }
+
+}
+
+<html>
+	<body>
+		<h2>The server-local time now is:</h2>
+
+		<p>@FormatDate(DateTime.Now)</p>
+
+		<h2>This page was last updated:</h2>
+
+		<p>@Model.LastModified</p>
+	</body>
+</html>

@@ -19,6 +19,10 @@ namespace pi_service
 
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
+                .UseKestrel()
+				.UseContentRoot(Directory.GetCurrentDirectory())
+				.UseIISIntegration()
+				.UseUrls("http://+:80")
                 .UseStartup<Startup>()
                 .Build();
     }

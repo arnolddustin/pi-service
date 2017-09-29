@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -8,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Microsoft.Extensions.FileProviders;
 
 namespace pi_service
 {
@@ -36,6 +38,7 @@ namespace pi_service
 
             app.UseMvc();
             app.UseDefaultFiles();
+            app.UseStaticFiles();
         }
     }
 }

@@ -1,8 +1,9 @@
 # pi-service
 ASPNET Core website that exposes features of the [pi-dotnetcore](https://www.github.com/arnolddustin/pi-dotnetcore) library as a RESTful service.
 
-# publishing
-The `publish.sh` script builds the console app and uses `rsync` to copy the built output to a pie with hostname `raspberrypi` and user `pi`.
+# getting started
+* clone this repostory
+* run the `publish.sh` script to build and deploy.  The script builds the dotnetcore app for the linux-arm platfrom then uses `rsync` to copy the built output to a pie listening at at the login/host `pi@raspberrypi`.
 
 # running on the pi
 * run `publish.sh` to publish to the pi

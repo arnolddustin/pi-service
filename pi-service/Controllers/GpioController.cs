@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using pi_dotnetcore;
+using pi_service.Models;
 
 namespace pi_service.Controllers
 {
@@ -24,9 +25,9 @@ namespace pi_service.Controllers
         }
 
         [HttpPost("pin")]
-        public GpioPin UpdatePin(int pin, bool output, bool on)
+        public GpioPin UpdatePin([FromBody]GpioPinModel model)
         {
-            return _gpio.Set(pin, (output) ? GpioDirection.Out : GpioDirection.In, on);
+            return _gpio.Set(model.number, (model.output) ? GpioDirection.Out : GpioDirection.In, model.on);
         }
     }
 }

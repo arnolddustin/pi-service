@@ -17,32 +17,16 @@ namespace pi_service.Controllers
             _gpio = new Gpio();
         }
 
-        [HttpGet("status/{pin}")]
-        public string Status(int pin)
+        [HttpGet("pin/{pin}")]
+        public GpioPin GetPin(int pin)
         {
-            try
-            {
-                return _gpio.Get(pin).ToString();
-            }
-            catch (Exception ex)
-            {
-                return ex.Message;
-            }
+            return _gpio.Get(pin);
         }
 
-        // GET api/values/5
-        [HttpGet("{pin}/{on}")]
-        public string Get(int pin, bool on)
+        [HttpPost("pin")]
+        public GpioPin UpdatePin(int pin, bool output, bool on)
         {
-            try
-            {
-                _gpio.Set(pin, GpioDirection.Out, on);
-                return string.Format("Set pin {0} to {1}", pin, on);
-            }
-            catch (Exception ex)
-            {
-                return ex.Message;
-            }
+            return _gpio.Set(pin, (output) ? GpioDirection.Out : GpioDirection.In, on);
         }
     }
 }

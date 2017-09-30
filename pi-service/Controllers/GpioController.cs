@@ -18,16 +18,72 @@ namespace pi_service.Controllers
             _gpio = gpio;
         }
 
+        [HttpGet("pin")]
+        public IActionResult GetInitializedPins()
+        {
+            try
+            {
+                return Json(_gpio.GetInitializedPins());
+            }
+            catch (Exception ex)
+            {
+                return NotFound(ex.Message);
+            }
+        }
+
         [HttpGet("pin/{pin}")]
         public IActionResult GetPin(int pin)
         {
-            return Json(_gpio.GetPin(pin));
+            try
+            {
+                return Json(_gpio.GetPin(pin));
+            }
+            catch (Exception ex)
+            {
+                return NotFound(ex.Message);
+            }
         }
 
         [HttpPost("pin")]
         public IActionResult UpdatePin([FromBody]PinModel model)
         {
-            return Json(_gpio.SetPin(model.number, model.output, model.on));
+            try
+            {
+                _gpio.SetPin(model.number, model.on);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return NotFound(ex.Message);
+            }
+        }
+
+        [HttpDelete("pin/{pin}")]
+        public IActionResult DeInitPin(int pin)
+        {
+            try
+            {
+                _gpio.DeInitPin(pin);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return NotFound(ex.Message);
+            }
+        }
+
+        [HttpPut("pin/{pin}")]
+        public IActionResult InitPin(int pin)
+        {
+            try
+            {
+                _gpio.InitPin(pin, true);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return NotFound(ex.Message);
+            }
         }
     }
 }

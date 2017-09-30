@@ -1,5 +1,5 @@
 # pi-service
-Experimenting with dotnetcore on the Raspberry Pi
+ASPNET Core website that exposes features of the [pi-dotnetcore](https://www.github.com/arnolddustin/pi-dotnetcore) library as a RESTful service.
 
 # publishing
 The `publish.sh` script builds the console app and uses `rsync` to copy the built output to a pie with hostname `raspberrypi` and user `pi`.

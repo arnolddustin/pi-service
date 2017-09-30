@@ -2,7 +2,7 @@
 Experimenting with dotnetcore on the Raspberry Pi
 
 # publishing
-The `publish.sh` script builds the console app and uses `scp` to copy the built output to a pie with hostname `raspberrypi` and user `pi`.
+The `publish.sh` script builds the console app and uses `rsync` to copy the built output to a pie with hostname `raspberrypi` and user `pi`.
 
 # running on the pi
 * run `publish.sh` to publish to the pi

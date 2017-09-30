@@ -10,7 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.Extensions.FileProviders;
-using pi_dotnetcore;
+using pi_dotnetcore.Gpio;
 
 namespace pi_service
 {
@@ -27,6 +27,7 @@ namespace pi_service
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.AddSingleton<IGpio, RaspberryPiGpio>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

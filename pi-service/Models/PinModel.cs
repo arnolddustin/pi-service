@@ -1,13 +1,9 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using pi_dotnetcore;
+using pi_dotnetcore.Gpio;
 
 namespace pi_service.Models
 {
-    public class GpioPinModel
+    public class PinModel : IPin
     {
         public int number { get; set; }
         public bool output { get; set; }

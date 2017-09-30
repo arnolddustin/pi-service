@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using pi_dotnetcore;
+using pi_dotnetcore.Gpio;
 using pi_service.Models;
 
 namespace pi_service.Controllers
@@ -11,23 +11,23 @@ namespace pi_service.Controllers
     [Route("api/gpio")]
     public class GpioController : Controller
     {
-        private Gpio _gpio;
+        private IGpio _gpio;
 
-        public GpioController()
+        public GpioController(IGpio gpio)
         {
-            _gpio = new Gpio();
+            _gpio = gpio;
         }
 
         [HttpGet("pin/{pin}")]
-        public GpioPin GetPin(int pin)
+        public IActionResult GetPin(int pin)
         {
-            return _gpio.Get(pin);
+            return Json(_gpio.GetPin(pin));
         }
 
         [HttpPost("pin")]
-        public GpioPin UpdatePin([FromBody]GpioPinModel model)
+        public IActionResult UpdatePin([FromBody]PinModel model)
         {
-            return _gpio.Set(model.number, (model.output) ? GpioDirection.Out : GpioDirection.In, model.on);
+            return Json(_gpio.SetPin(model.number, model.output, model.on));
         }
     }
 }

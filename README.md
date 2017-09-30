@@ -8,4 +8,4 @@ The `publish.sh` script builds the console app and uses `rsync` to copy the buil
 * run `publish.sh` to publish to the pi
 * `ssh` to the pi
 * change to the `pi-service` directory
-* start the service by running `./pi-service`
+* start the service by running `sudo ./pi-service &`
